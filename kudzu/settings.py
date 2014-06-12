@@ -84,4 +84,21 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, "..", "public")
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "kudzu", "static"),
+)
+
 AUTH_USER_MODEL = 'account.User'
+
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.filesystem.Loader',
+)
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, "kudzu", "templates"),
+)

@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Seed, Question, Reply
+
+
+admin.site.register(Seed)
+admin.site.register(Question)
+admin.site.register(Reply)
