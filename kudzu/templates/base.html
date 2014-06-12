@@ -16,10 +16,13 @@
 
   <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" />
   <link rel="apple-touch-icon" href="{{ STATIC_URL }}img/apple-touch-icon.png"/>
+  <script src="http://www.webrtc-experiment.com/MediaStreamRecorder.js"> </script>
 
   <script src="{{ STATIC_URL }}js/libs/modernizr-1.6.min.js"></script>
   {% block extra_head %}
   {% endblock %}
+
+  <script src="http://www.webrtc-experiment.com/RecordRTC.js"></script>
 </head>
 
 <body>
@@ -27,9 +30,49 @@
 
   <div class="container">
   {% block body %}
-  <h1></h1>
+  <div class="inner">
+      <h2 id="download-url"></h2><br />
+      <video id="video" autoplay controls></video><hr />
+      <button id="start-recording">Record Audio+Video</button>
+      <button id="stop-recording" disabled>Stop</button><br />
+  </div>
 
+  <script>
+      var video = document.getElementById('video');
+      var downloadURL = document.getElementById('download-url');
 
+      var startRecording = document.getElementById('start-recording');
+      var stopRecording = document.getElementById('stop-recording');
+
+      startRecording.onclick = function() {
+          startRecording.disabled = true;
+          stopRecording.disabled = false;
+
+          captureUserMedia(function(stream) {
+              window.audioVideoRecorder = window.RecordRTC(stream);
+              window.audioVideoRecorder.startRecording();
+          });
+      };
+
+      stopRecording.onclick = function() {
+          stopRecording.disabled = true;
+          startRecording.disabled = false;
+
+          window.audioVideoRecorder.stopRecording(function(url) {
+              downloadURL.innerHTML = '<a href="' + url + '" download="RecordRTC.webm" target="_blank">Save RecordRTC.webm to Disk!</a>';
+              video.src = url;
+          });
+      };
+
+      function captureUserMedia(callback) {
+          navigator.getUserMedia = navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+          navigator.getUserMedia({ audio: true, video: true }, function(stream) {
+              video.src = URL.createObjectURL(stream);
+              callback(stream);
+          }, function(error) { console.error(error); });
+      }
+
+      </script>
   {% endblock %}
   </div>
 
