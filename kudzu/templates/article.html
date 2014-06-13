@@ -6,7 +6,7 @@
   <div class="kudzu-content">
     <section>
       <div class="question">
-        <a class="vine-link" href="#" data-vineurl="https://vine.co/v/MjTbMW2Thlz/embed/simple">
+        <a class="vine-link" href="#" data-vineurl="https://vine.co/v/MjTbMW2Thlz/embed/simple?audio=1">
           <img src="http://v.cdn.vine.co/r/thumbs/811CC0AA3D1088884611008065536_2.0.4.10630072758353922212.mp4.jpg?versionId=nFJzCnkjoTFIJO.bxHp7mVaDFauNJMiO" class="thumb">
         </a>
 
@@ -107,7 +107,11 @@
   var getLatestVideo = function(callback) {
     $.getJSON('/user/1088831847787839488/latest').then(function(response){
       callback(response.data.records[0]);
-    })
+    });
   };
+
+  $('#vine-modal').on('hidden.bs.modal', function (e) {
+    $('#vine-embed').attr('src', '');
+  });
   </script>
 {% endblock %}
