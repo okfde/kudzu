@@ -49,7 +49,7 @@ submitRecording.click(function(){
     var oReq = new XMLHttpRequest();
     oReq.open('POST', window.recorderURL, true);
     oReq.onload = function (oEvent) {
-      document.location.href = document.location.href;
+      document.location.reload();
     };
     oReq.send(formData);
   };
