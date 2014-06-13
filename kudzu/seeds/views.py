@@ -1,6 +1,6 @@
 import requests
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -8,7 +8,7 @@ from .models import Seed, Question, Reply
 
 
 def home(request):
-    return render(request, 'index.html')
+    return redirect('/article')
 
 
 def article(request):
