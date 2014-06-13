@@ -11,7 +11,7 @@ p {
     -webkit-font-smoothing: antialiased;
 }
 .kudzu-content {
-    margin-left: 16rem;
+    margin-left: 8rem;
     margin-right: 32rem;
     max-width: 62rem;
     margin-bottom: 2em;
@@ -19,9 +19,6 @@ p {
     overflow: hidden;
 }
 
-.fake-article {
-    margin-left: 77px;
-}
 
 .thumb {
     width: 140px;
@@ -29,11 +26,17 @@ p {
     margin-right: 10px;
 }
 
-.question {
+.question, section {
     margin-bottom: 10px;
     display: block;
     overflow: hidden;
 }
+
+section {
+    margin-bottom: 20px;
+
+}
+
 .question, .responses {
     clear: both;
     position: relative;
