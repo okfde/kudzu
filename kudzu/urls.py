@@ -6,6 +6,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'kudzu.seeds.views.home', name='home'),
+    url(r'^article$', 'kudzu.seeds.views.article', name='article'),
     url(r'^upload/$', 'kudzu.seeds.views.create', name='create'),
     url(r'^user/(?P<user_id>\d+)/latest', 'kudzu.seeds.views.user_latest', name='user_latest'),
     url(r'^video/(?P<video_id>\d+)', 'kudzu.seeds.views.vine_video', name='vine_video'),

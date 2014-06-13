@@ -1,0 +1,40 @@
+
+body {
+    color: #333;
+    font-size: 1.6em;
+    line-height: 1.5;
+}
+
+p {
+    margin: 0 0 1.2rem 0;
+    font-family: "EgyptianText",georgia,serif;
+    -webkit-font-smoothing: antialiased;
+}
+.kudzu-content {
+    margin-left: 16rem;
+    margin-right: 32rem;
+    max-width: 62rem;
+}
+
+.fake-article {
+    margin-left: 77px;
+}
+
+.thumb {
+    width: 140px;
+    float: left;
+    margin-right: 10px;
+}
+
+.question {
+    clear: both;
+    position: relative;
+}
+
+.fa-play-circle-o {
+    font-size: 3em;
+    position: absolute;
+    left: 50px;
+    top: 52px;
+    color: #fff;
+}

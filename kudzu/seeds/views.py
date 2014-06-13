@@ -10,6 +10,8 @@ from .models import Seed, Question, Reply
 def home(request):
     return render(request, 'index.html')
 
+def article(request):
+    return render(request, 'article.html')
 
 @csrf_exempt
 def create(request):
