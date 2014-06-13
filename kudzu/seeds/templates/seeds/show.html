@@ -26,7 +26,8 @@
 {% block scripts %}
 <script>
 
-$('.add-reply').click(function(){
+$('.add-reply').click(function(e){
+  e.preventDefault();
   setRecorder($(this).data('submiturl'));
   $("#record-modal").modal();
 });
