@@ -5,7 +5,10 @@ from kudzu.account.models import User
 
 class Seed(models.Model):
     url = models.URLField()
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, null=True)
+
+    def __unicode__(self):
+        return "Seed %s" % self.id
 
 
 def upload_to_question(instance, filename):
@@ -26,6 +29,6 @@ def upload_to_reply(instance, filename):
 
 class Reply(models.Model):
     question = models.ForeignKey(Question)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, null=True)
     url = models.URLField(blank=True)
     video = models.FileField(upload_to=upload_to_reply, max_length=255, blank=True, default='')

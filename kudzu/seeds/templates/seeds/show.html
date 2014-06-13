@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block body %}
+<ul class="list-unstyled">
+{% for question in seed.question_set.all %}
+  <li>
+    {{ question.text }}
+    <video width="320" src="{{ question.video.url }}" controls></video>
+    <div class="panel-group" id="accordion">
+    {% for reply in question.reply_set.all %}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ question.id }}-{{ reply.id }}">
+              Collapsible Group Item #1
+            </a>
+          </h4>
+        </div>
+        <div id="#collapse-{{ question.id }}-{{ reply.id }}" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <video width="320" src="{{ reply.video.url }}" controls></video>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </ul>
+    <a href="#" class="add-reply" data-submiturl="{% url 'create_reply' question_id=question.id %}">
+      Submit your reply
+    </a>
+  </li>
+{% endfor %}
+</ul>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$('.add-reply').click(function(){
+  setRecorder($(this).data('submiturl'));
+  $("#record-modal").modal();
+});
+</script>
+{% endblock %}

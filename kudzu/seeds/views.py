@@ -10,8 +10,10 @@ from .models import Seed, Question, Reply
 def home(request):
     return render(request, 'index.html')
 
+
 def article(request):
     return render(request, 'article.html')
+
 
 def show_seed(request, seed_id):
     seed = get_object_or_404(Seed, id=int(seed_id))
@@ -27,7 +29,22 @@ def create(request):
     question = Question(seed=seed)
     question.save()
     question.video.save('video.webm', request.FILES['file'])
-    return render(request, 'seeds/upload.html')
+    return HttpResponse('success')
+
+
+@csrf_exempt
+def create_reply(request, question_id):
+    question = get_object_or_404(Question, id=int(question_id))
+    user = request.user
+    if not user.is_authenticated():
+        user = None
+    reply = Reply.objects.create(
+        question=question,
+        user=user
+    )
+    reply.save()
+    reply.video.save('video.webm', request.FILES['file'])
+    return HttpResponse('success')
 
 
 def user_latest(request, user_id):
