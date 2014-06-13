@@ -55,3 +55,7 @@ p {
 a {
     color: #005689;
 }
+
+.modal-body {
+    padding: 0;
+}
