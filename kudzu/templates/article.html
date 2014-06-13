@@ -3,6 +3,37 @@
 
 
 {% block body %}
+
+  <div class="jumbotron explainer">
+    <h1>Kudzu - Video commenting</h1>
+
+    <p>Kudzu allows journalists and readers to engage in short, focused discussions through integration of video comments.</p>
+
+    <p>Our demo illustrates this through integration with Vine, a mobile platform for video sharing, but we've also prototyped a browser-based comment recording system. Vine videos are restricted to 6 seconds duration, which encourages more focused, higher-quality submissions.</p>
+
+    <p>This should facilitate increased user engagement - especially Vine, which targets younger and more mobile-focused audiences. It should also encourage higher comment quality and easier verification of commenter identity. In the browser-based version, face recognition could also be incorporated to reduce spam.</p>
+
+    <p>The newsroom gains a more visible and engaged readership, better targeted feedback on their articles, and the possibility to integrate user-generated commentary in the form of e.g. mashups, debates, etc.</p>
+
+    <h2>Considerations</h2>
+
+    <ul>
+      <li>Audio/Video playback will work in Firefox and Safari</li>
+      <li>Demo of Vine video record assumes a link between the user's vine account and the commenting site, as such this demo is hardcoded to one account. Not yours.</li>
+      <li>Adding your own comment redirects only in IOS devices.</li>
+    </ul>
+
+
+    <p><a href="https://www.youtube.com/watch?v=MSj1U5ed02o">Watch a video demo of our Vine demo</a> or <a href="http://kudzu.herokuapp.com/seed/1/">see our WebRTC video recording demo</a></p>
+
+    <p>Thanks to Tiffany Conroy, Marcos Vanetta, Sebastian Horn and Friedrich Lindeberg for contributing content, and to GEN for having us participate in the <a href="http://www.globaleditorsnetwork.org/programmes/editors-lab/season-2013-2014/editors-lab-hackdays-final/">Barcelona Hackday</a></p>
+
+    <p>Thanks from us, <br> Kate McCurdy, Annabel Church, Stefan Wehrmeyer.</p>
+
+    <p>Our previous project <a href="newsreadsus.okfn.de">News Reads us</a>, made at the Berlin Hackday by Annabel Church, Stefan Wehrmeyer and Friedrich Lindenburg.</p>
+
+  </div>
+
   <img class="fake-article" src="{{ STATIC_URL }}img/crop-article-uber.png" >
 
   <div class="kudzu-content">

@@ -5,20 +5,30 @@ body {
     line-height: 1.5;
 }
 
-p {
+p, ul {
     margin: 0 0 1.2rem 0;
     font-family: "EgyptianText",georgia,serif;
     -webkit-font-smoothing: antialiased;
 }
+
 .kudzu-content {
-    margin-left: 8rem;
+    margin-left: 9rem;
     margin-right: 32rem;
     max-width: 62rem;
     margin-bottom: 2em;
     display: block;
     overflow: hidden;
+    padding-top: 10px;
+
 }
 
+.explainer h1 {
+    padding-bottom: 0.5em;
+}
+
+.explainer {
+    margin-top: 10px;
+}
 
 .thumb {
     width: 140px;
