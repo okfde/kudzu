@@ -22,7 +22,6 @@ p {
 
 .thumb {
     width: 140px;
-    float: left;
     margin-right: 10px;
 }
 
@@ -35,6 +34,15 @@ p {
 section {
     margin-bottom: 20px;
 
+}
+
+.question img {
+    float: left;
+}
+
+.response {
+    position: relative;
+    float: left;
 }
 
 .question, .responses {
