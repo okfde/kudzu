@@ -14,6 +14,9 @@ p {
     margin-left: 16rem;
     margin-right: 32rem;
     max-width: 62rem;
+    margin-bottom: 2em;
+    display: block;
+    overflow: hidden;
 }
 
 .fake-article {
@@ -37,4 +40,8 @@ p {
     left: 50px;
     top: 52px;
     color: #fff;
+}
+
+.embed.hide {
+    display: none;
 }
