@@ -19,16 +19,26 @@ http://v.cdn.vine.co/r/thumbs/A79D66D21A1088884372482002944_2.0.4.18051798158888
     <section>
       <div class="question">
 
-        <img  data-toggle="modal" data-target="#myModal" src="https://v.cdn.vine.co/r/thumbs/811CC0AA3D1088884611008065536_2.0.4.10630072758353922212.mp4.jpg?versionId=nFJzCnkjoTFIJO.bxHp7mVaDFauNJMiO" class="thumb">
+        <a class="vine-link" href="#" data-vineurl="https://vine.co/v/MjTbMW2Thlz/embed/simple">
+          <img src="http://v.cdn.vine.co/r/thumbs/811CC0AA3D1088884611008065536_2.0.4.10630072758353922212.mp4.jpg?versionId=nFJzCnkjoTFIJO.bxHp7mVaDFauNJMiO" class="thumb">
+        </a>
+
         <i class="fa fa-play-circle-o"></i>
         <p>Does Uber's tax situation affect your decision to use their service?</p>
         <p><a href="vine://"><i class="fa fa-plus"></i> Add your response</a></p>
         <div class="embed">
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
+          <div class="modal fade" id="vine-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
             <div class="modal-content">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <div class="embed-test"></div>
+
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <!-- <h4 class="modal-title" id="myModalLabel">Comment</h4> -->
+              </div>
+              <div class="modal-body">
+                <iframe id="vine-embed" width="600" height="600" frameborder="0"></iframe>
+              </div>
+
             </div>
           </div>
         </div>
@@ -68,17 +78,10 @@ http://v.cdn.vine.co/r/thumbs/A79D66D21A1088884372482002944_2.0.4.18051798158888
 
 {% block scripts %}
 
-<script>
-    $( ".fa-play-circle-o" ).click(function() {
-      $.ajax({
-      url: "/",
-        context: document.body
-      }).done(function() {
-        $( this ).addClass( "done" );
-      });
-    });
-
+  <script>
+  $('.vine-link').click(function(){
+    $('#vine-embed').attr('src', $(this).data('vineurl'));
+    $('#vine-modal').modal();
+  });
   </script>
-
-
 {% endblock %}

@@ -1,6 +1,6 @@
 import requests
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -12,6 +12,11 @@ def home(request):
 
 def article(request):
     return render(request, 'article.html')
+
+def show_seed(request, seed_id):
+    seed = get_object_or_404(Seed, id=int(seed_id))
+    return render(request, 'seeds/show.html', {'seed': seed})
+
 
 @csrf_exempt
 def create(request):
