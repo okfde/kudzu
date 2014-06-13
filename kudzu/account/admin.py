@@ -63,7 +63,7 @@ class UserAdmin(DjangoUserAdmin):
     list_filter = ('is_superuser',)
 
     fieldsets = (
-        (_('Login details'), {'fields': ('email', 'password', 'yakyear')}),
+        (_('Login details'), {'fields': ('email', 'password')}),
         (_('Details'), {'fields': ('first_name', 'last_name')}),
         (_('Important dates'), {'fields': ('date_joined', 'last_login',)}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',)}),
