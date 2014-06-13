@@ -14,7 +14,7 @@
         </a>
 
         <p>Does Uber's tax situation affect your decision to use their service?</p>
-        <p><a href="vine://"><i class="fa fa-plus"></i> Add your response</a></p>
+        <p><a class="add-response" href="vine://"><i class="fa fa-plus"></i> Add your response</a></p>
 
       </div>
 
@@ -45,7 +45,7 @@
         <p><a href="vine://"><i class="fa fa-plus"></i> Add your response</a></p>
 
       </div>
-      <div class="responses">
+      <div class="responses" id="latest-question">
         <div class="response">
           <a class="vine-link" href="#" data-vineurl="https://vine.co/v/Mj2EBwYAu0m/embed/simple?audio=1">
             <img  data-toggle="modal" data-target="#myModal" src="http://v.cdn.vine.co/r/thumbs/A4C66835BE1089138092751081472_2cbb799f74c.0.4.13427551953898438796.mp4.jpg?versionId=cQh173CmU_Fiqvi9lkSmMHu4nRHApsGd" class="thumb">
@@ -59,6 +59,7 @@
             <img  data-toggle="modal" data-target="#myModal" src="http://v.cdn.vine.co/r/thumbs/E056C4DDE71089173584036904960_1402653366567_image.jpg?versionId=HxWwGfY55VHNZjXJCD.YPZV7mR10RKss" class="thumb">
             <i class="fa fa-play-circle-o"></i>
           </a>
+
         </div>
       </div>
 
@@ -95,7 +96,25 @@
     });
   };
 
-  getLatestVideo();
+  var pageOpened = new Date(), lastVineId;
+
+  $(window).on('pageshow', function(){
+    getLatestVideo(function(data){
+      console.log(data);
+      var parts = data.shareUrl.split('/')
+      var vineId = parts[parts.length - 1];
+      var lastCreated = new Date(data.created);
+      if (lastCreated < pageOpened) {
+        return;
+      }
+      if (lastVineId !== undefined && lastVineId === vineId) {
+        return;
+      }
+      lastVineId = vineId;
+      $('#latest-question').prepend(
+      '<div class="response"><a class="vine-link" href="#" data-vineurl="https://vine.co/v/' + vineId + '/embed/simple?audio=1"><img  data-toggle="modal" data-target="#myModal" src="' + data.thumbnailUrl + '" class="thumb"> <i class="fa fa-play-circle-o"></i> </a></div>');
+    });
+  });
 
   $('#vine-modal').on('hidden.bs.modal', function (e) {
     $('#vine-embed').attr('src', '');
