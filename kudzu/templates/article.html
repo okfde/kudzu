@@ -85,7 +85,7 @@
 {% block scripts %}
 
   <script>
-  $('.vine-link').click(function(e){
+  $(document).on('click', '.vine-link', function(e){
     e.preventDefault();
     $('#vine-embed').attr('src', $(this).data('vineurl'));
     $('#vine-modal').modal();
