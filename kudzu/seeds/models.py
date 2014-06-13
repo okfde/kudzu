@@ -8,9 +8,16 @@ class Seed(models.Model):
     user = models.ForeignKey(User)
 
 
+def upload_to(instance, filename):
+    return "kudzu/%s/%s.webm" % (str(instance.id)[0], instance.id)
+
+
 class Question(models.Model):
+    order = models.IntegerField(default=0)
     seed = models.ForeignKey(Seed)
-    text = models.TextField()
+    url = models.URLField(blank=True)
+    text = models.TextField(blank=True)
+    video = models.FileField(upload_to=upload_to, max_length=255, blank=True, default='')
 
 
 class Reply(models.Model):

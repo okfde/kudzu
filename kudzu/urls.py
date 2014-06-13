@@ -6,6 +6,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'kudzu.seeds.views.home', name='home'),
+    url(r'^upload/$', 'kudzu.seeds.views.create', name='create'),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),

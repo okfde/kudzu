@@ -1,1 +1,75 @@
 {% extends "base.html" %}
+
+
+{% block body %}
+  <div class="inner">
+      <h2 id="download-url"></h2><br />
+      <video style="width: 640px; height: 480px;" id="video" autoplay controls></video><hr />
+      <button id="start-recording">Record Audio+Video</button>
+      <button id="stop-recording" disabled>Stop</button><br />
+      <button id="submit-recording" disabled>Submit!</button>
+  </div>
+
+{% endblock body %}
+
+{% block scripts %}
+
+<script>
+  var recordingBlob;
+  var video = document.getElementById('video');
+  var downloadURL = document.getElementById('download-url');
+
+  var startRecording = document.getElementById('start-recording');
+  var stopRecording = document.getElementById('stop-recording');
+
+  startRecording.onclick = function() {
+      startRecording.disabled = true;
+      stopRecording.disabled = false;
+
+      captureUserMedia(function(stream) {
+          window.audioVideoRecorder = window.RecordRTC(stream);
+          window.audioVideoRecorder.startRecording();
+      });
+  };
+
+  stopRecording.onclick = function() {
+      stopRecording.disabled = true;
+      startRecording.disabled = false;
+
+      window.audioVideoRecorder.stopRecording(function(url) {
+        $('#submit-recording').prop('disabled', false);
+        recordingBlob = url;
+        video.src = url;
+      });
+  };
+
+  function captureUserMedia(callback) {
+      navigator.getUserMedia = navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+      navigator.getUserMedia({ audio: true, video: true }, function(stream) {
+          video.src = URL.createObjectURL(stream);
+          callback(stream);
+      }, function(error) { console.error(error); });
+  }
+
+  $('#submit-recording').click(function(){
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', recordingBlob, true);
+    xhr.responseType = 'blob';
+    xhr.onload = function(e) {
+      console.log('onload', this, e);
+      var myBlob = this.response;
+      var formData = new FormData();
+      formData.append('file', myBlob, 'file.webm');
+      var oReq = new XMLHttpRequest();
+      oReq.open("POST", '/upload/', true);
+      oReq.onload = function (oEvent) {
+        console.log('Uploaded');
+      };
+      oReq.send(formData);
+    };
+    xhr.send();
+  });
+
+</script>
+
+{% endblock %}

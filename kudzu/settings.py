@@ -106,3 +106,14 @@ TEMPLATE_LOADERS = (
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "kudzu", "templates"),
 )
+
+# Use this: storages.backends.s3boto.S3BotoStorage
+DEFAULT_FILE_STORAGE = env('DEFAULT_FILE_STORAGE', 'django.core.files.storage.FileSystemStorage')
+
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', '')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', '')
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME', '')
+AWS_S3_SECURE_URLS = True
+AWS_QUERYSTRING_AUTH = False
+
+MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, "files"))
