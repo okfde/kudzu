@@ -30,9 +30,15 @@ p {
 }
 
 .question {
+    margin-bottom: 10px;
+    display: block;
+    overflow: hidden;
+}
+.question, .responses {
     clear: both;
     position: relative;
 }
+
 
 .fa-play-circle-o {
     font-size: 3em;
@@ -44,4 +50,8 @@ p {
 
 .embed.hide {
     display: none;
+}
+
+a {
+    color: #005689;
 }
