@@ -117,3 +117,4 @@ AWS_S3_SECURE_URLS = True
 AWS_QUERYSTRING_AUTH = False
 
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, "files"))
+MEDIA_URL = env('MEDIA_URL', '/media/')
