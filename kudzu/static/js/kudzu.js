@@ -38,6 +38,7 @@ function captureUserMedia(callback) {
 }
 
 submitRecording.click(function(){
+  submitRecording.prop('disabled', true);
   var xhr = new XMLHttpRequest();
   xhr.open('GET', recordingBlob, true);
   xhr.responseType = 'blob';
